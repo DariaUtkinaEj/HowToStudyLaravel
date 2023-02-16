@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 
 class ModuleMake extends Command
 {
@@ -73,6 +74,9 @@ class ModuleMake extends Command
     }
     private function createModel()
     {
+        # здесь я использовала следующие хелперы:
+        # 1) Метод Str::studly преобразует строку в StudlyCase
+        # 2) Метод Str::singular преобразует слово-строку в единственное число.
         $model = Str::singular(Str::studly(class_basename($this->argument('name'))));
 
         $this->call('make:model',[
@@ -93,6 +97,9 @@ class ModuleMake extends Command
 
     private function createMigration()
     {
+        # здесь я использовала следующие хелперы:
+        # 3) Метод Str::plural преобразует слово-строку во множественное число.
+        # 4) Метод Str::snake преобразует строку в snake_case
         $table = Str::plural(Str::snake(class_basename($this->argument('name'))));
 
         try {
