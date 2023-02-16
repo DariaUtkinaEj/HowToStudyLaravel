@@ -98,7 +98,6 @@ class ModuleMake extends Command
         ]);
 
     }
-
     private function createController()
     {
         $controller = Str::studly(class_basename($this->argument('name')));
